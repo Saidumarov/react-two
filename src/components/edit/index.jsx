@@ -92,7 +92,7 @@ function Edit() {
           onClick={editAdd}
           disabled={!user.name || !user.group || !user.sur}
         >
-          Save
+          Update
         </SaveButton>
         <SaveButton onClick={() => navegate("/")} style={{ opacity: "0.7" }}>
           Close
