@@ -7,30 +7,36 @@ import "../filter/index.scss";
 import axios from "axios";
 function Tabel() {
   const navegate = useNavigate();
-  const [data, setData] = useState();
-
+  const [data, setData] = useState([]);
+  const [data1, setData1] = useState([]);
+  const [grup, setGrup] = useState();
+  //
   const fetchData = () => {
     axios.get("http://localhost:3000/data").then((res) => {
       const data = res.data;
       setData(data);
+      setData1(data);
     });
   };
+
+  //
   useEffect(() => {
     fetchData();
   }, []);
 
+  //
+
   const handleChange = (event) => {
-    setGrup(event.target.value);
     let value = event.target.value;
-    let person = JSON.parse(localStorage.getItem("user")) || [];
-    let newperson = person?.filter((el) => {
-      return value === "all" ? el : el?.grup === value;
+    setGrup(value);
+    let newperson = data1?.filter((el) => {
+      return value === "all" ? el : el?.group === value;
     });
     setData(newperson);
   };
 
   const deleteAdd = (id) => {
-    if (window.confirm("Delete Contact")) {
+    if (window.confirm("Delete Student ")) {
       axios
         .delete(`http://localhost:3000/data/${id}`)
         .then((res) => {
@@ -49,12 +55,11 @@ function Tabel() {
 
   const search = (value) => {
     let v = value.toLowerCase();
-    let person = JSON.parse(localStorage.getItem("user")) || [];
-    let search = person?.filter((el) => {
+    let search = data1?.filter((el) => {
       return (
         el?.name?.toLowerCase().includes(v) ||
         el?.sur?.toLowerCase().includes(v) ||
-        el?.grup?.toLowerCase().includes(v)
+        el?.group?.toLowerCase().includes(v)
       );
     });
     setData(search);
@@ -72,10 +77,10 @@ function Tabel() {
             />
           </div>
           <div className="filter_item">
-            <select>
+            <select value={grup} onChange={handleChange}>
               <option value="all">Group</option>
-              <option value="n45">N45</option>
-              <option value="n44">N44</option>
+              <option value="N45">N45</option>
+              <option value="N44">N44</option>
             </select>
           </div>
         </div>
@@ -86,7 +91,7 @@ function Tabel() {
             <p>#</p>
             <p>First</p>
             <p>Last</p>
-            <p>Gender</p>
+            <p>Group</p>
             <p>Action</p>
           </div>
           {data && data

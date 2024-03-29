@@ -83,8 +83,8 @@ function Edit() {
           <div className="form">
             <select name="group" value={user.group} onChange={handelChange}>
               <option value="all">Group</option>
-              <option value="n45">N45</option>
-              <option value="n44">N44</option>
+              <option value="N45">N45</option>
+              <option value="N44">N44</option>
             </select>
           </div>
         </div>
