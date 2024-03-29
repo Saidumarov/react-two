@@ -8,6 +8,7 @@ import { GrNext } from "react-icons/gr";
 import { GrPrevious } from "react-icons/gr";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
+import { DeleteButton, EditButton, Pagenarion } from "../styledComponent";
 function Tabel() {
   const navegate = useNavigate();
   const [data, setData] = useState([]);
@@ -120,22 +121,19 @@ function Tabel() {
                   <p>{el?.sur}</p>
                   <p> {el?.group} </p>
                   <p>
-                    <button className="edit" onClick={() => edit(el?.id)}>
+                    <EditButton onClick={() => edit(el?.id)}>
                       <Edit />
-                    </button>
-                    <button
-                      className="delete"
-                      onClick={() => deleteAdd(el?.id)}
-                    >
+                    </EditButton>
+                    <DeleteButton onClick={() => deleteAdd(el?.id)}>
                       <Delete />
-                    </button>
+                    </DeleteButton>
                   </p>
                 </div>
               ))
             : ""}
         </div>
       </div>
-      <div className="pagenation">
+      <Pagenarion>
         <ReactPaginate
           breakLabel="..."
           nextLabel={<GrNext />}
@@ -148,7 +146,7 @@ function Tabel() {
           subContainerClassName={"pages pagination"}
           activeClassName={"active"}
         />
-      </div>
+      </Pagenarion>
     </>
   );
 }

@@ -47,43 +47,6 @@
     padding-left: 10px;
   }
 }
-.edit {
-  background-color: rgb(13, 109, 252);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  width: 60px;
-  height: 40px;
-  transition: 0.3s;
-  svg {
-    fill: white;
-  }
-}
-
-.delete {
-  background-color: #e84848;
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  cursor: pointer;
-  margin-left: 20px;
-  outline: none;
-  width: 60px;
-  height: 40px;
-  transition: 0.3s;
-  svg {
-    fill: white;
-  }
-}
-
-.edit:hover {
-  background-color: rgb(11, 92, 214);
-}
-.delete:hover {
-  background-color: rgb(186, 45, 59);
-}
 
 @media screen and (max-width: 780px) {
   .tr1 {
@@ -146,45 +109,5 @@
       margin: 0;
       margin-left: 10px;
     }
-  }
-}
-
-.pagenation {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 100px;
-  margin-bottom: 150px;
-
-  ul {
-    display: flex;
-  }
-  li a {
-    border-radius: 7px;
-    padding: 0.5rem 1rem;
-    border: gray 1px solid;
-    cursor: pointer;
-  }
-  li.previous a,
-  li.next a,
-  li.break a {
-    border-color: transparent;
-  }
-  li.active a {
-    background-color: #0366d6;
-    border-color: transparent;
-    color: white;
-    min-width: 32px;
-  }
-  li.disabled a {
-    color: grey;
-  }
-  li.disable,
-  li.disabled a {
-    cursor: default;
-  }
-  li {
-    list-style: none;
-    margin-left: 10px;
   }
 }
