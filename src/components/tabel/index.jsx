@@ -4,12 +4,17 @@ import "./index.scss";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../filter/index.scss";
+import { GrNext } from "react-icons/gr";
+import { GrPrevious } from "react-icons/gr";
 import axios from "axios";
+import ReactPaginate from "react-paginate";
 function Tabel() {
   const navegate = useNavigate();
   const [data, setData] = useState([]);
   const [data1, setData1] = useState([]);
   const [grup, setGrup] = useState();
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 10;
   //
   const fetchData = () => {
     axios.get("http://localhost:3000/data").then((res) => {
@@ -23,6 +28,19 @@ function Tabel() {
   useEffect(() => {
     fetchData();
   }, []);
+
+  //
+
+  // pagenation function
+  const startOffset = itemOffset;
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = data?.slice(startOffset, endOffset);
+  const pageCount = Math.ceil(data?.length / itemsPerPage);
+
+  const handlePageClick = (selectedPage) => {
+    const newOffset = selectedPage * itemsPerPage;
+    setItemOffset(newOffset);
+  };
 
   //
 
@@ -94,8 +112,8 @@ function Tabel() {
             <p>Group</p>
             <p>Action</p>
           </div>
-          {data && data
-            ? data?.map((el, index) => (
+          {currentItems && currentItems
+            ? currentItems?.map((el, index) => (
                 <div className="tr1" key={index}>
                   <p>{index + 1}</p>
                   <p>{el?.name}</p>
@@ -116,6 +134,20 @@ function Tabel() {
               ))
             : ""}
         </div>
+      </div>
+      <div className="pagenation">
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel={<GrNext />}
+          onPageChange={({ selected }) => handlePageClick(selected)}
+          pageRangeDisplayed={5}
+          pageCount={pageCount}
+          previousLabel={<GrPrevious />}
+          marginPagesDisplayed={2}
+          containerClassName={"pagination"}
+          subContainerClassName={"pages pagination"}
+          activeClassName={"active"}
+        />
       </div>
     </>
   );
