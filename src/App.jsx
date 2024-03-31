@@ -1,26 +1,43 @@
+import { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Header from "./components/header";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Tabel from "./components/tabel";
-import Provider from "./components/provider";
+import LoginPanel from "./components/login";
 import Add from "./components/add";
 import Edit from "./components/edit";
-function App() {
+import Profile from "./components/Profile";
+const Router = () => {
+  const [isLogin, setIsLogin] = useState(false);
+  const navigation = useNavigate();
+  const parms = window.location.href;
+  // login
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setIsLogin(true);
+      if (parms.includes("/login")) {
+        return navigation("/");
+      }
+      return;
+    } else {
+      setIsLogin(false);
+      return navigation("/login");
+    }
+  }, [isLogin, parms]);
   return (
-    <div>
-      <BrowserRouter>
-        <Provider>
-          <Routes>
-            <Route path="/" element={<Header />}>
-              <Route path="/" element={<Tabel />} />
-              <Route path="/add" element={<Add />} />
-              <Route path="/edit/:id" element={<Edit />} />
-            </Route>
-          </Routes>
-        </Provider>
-      </BrowserRouter>
-      <Outlet />
-    </div>
+    <>
+      <Header login={isLogin} />
+      <div>
+        <Routes>
+          <Route path="/" element={<Tabel />} />
+          <Route path="/login" element={<LoginPanel login={setIsLogin} />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/edit/:id" element={<Edit />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
+    </>
   );
-}
+};
 
-export default App;
+export default Router;

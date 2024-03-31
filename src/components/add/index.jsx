@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
 import { useNavigate } from "react-router-dom";
-import { SaveButton } from "../styledComponent";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -71,15 +70,20 @@ function Add() {
             </select>
           </div>
         </div>
-        <SaveButton
+        <button
+          className="save"
           onClick={add}
           disabled={!user.name || !user.group || !user.sur}
         >
           Save
-        </SaveButton>
-        <SaveButton onClick={() => navegate("/")} style={{ opacity: "0.7" }}>
+        </button>
+        <button
+          className="save"
+          onClick={() => navegate("/")}
+          style={{ opacity: "0.7" }}
+        >
           Close
-        </SaveButton>
+        </button>
       </div>
     </>
   );

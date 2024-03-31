@@ -7,6 +7,19 @@ header {
   .container {
     height: 100%;
   }
+  button {
+    border: none;
+    border-radius: 8px;
+    bottom: 0;
+    color: #fff;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 16px;
+    height: 45px;
+    width: 130px;
+    z-index: 2;
+    background-color: #1a8754;
+  }
 }
 .header {
   width: 100%;
@@ -14,4 +27,22 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.header_div {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+@media (max-width: 450px) {
+  header {
+    .header {
+      h1 {
+        font-size: 20px;
+      }
+      .header_div {
+        gap: 10px;
+      }
+    }
+  }
 }

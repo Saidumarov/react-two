@@ -2,21 +2,27 @@
   "data": [
     {
       "id": "1",
-      "name": "Ja'farxon",
+      "name": "Jafarxon",
       "group": "N45",
       "sur": "Saidumarov"
     },
     {
       "id": "2",
-      "name": "Ja'farxon",
+      "name": "Azim",
       "group": "N44",
-      "sur": "Saidumarov"
+      "sur": "Narzullayev"
     },
     {
       "id": "3",
-      "name": "Ja'farxon",
+      "name": "Akmal",
+      "group": "N45",
+      "sur": "Diyorov"
+    },
+    {
+      "id": "4",
+      "name": "Alisher",
       "group": "N44",
-      "sur": "Saidumarov"
+      "sur": "Bobomurodov"
     }
   ]
 }
