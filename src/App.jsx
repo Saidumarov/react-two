@@ -6,6 +6,7 @@ import LoginPanel from "./components/login";
 import Add from "./components/add";
 import Edit from "./components/edit";
 import Profile from "./components/Profile";
+import NotFound from "./components/not-found";
 const Router = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigation = useNavigate();
@@ -34,6 +35,7 @@ const Router = () => {
           <Route path="/add" element={<Add />} />
           <Route path="/edit/:id" element={<Edit />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>
